@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:context=".Report_Activity" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="-104dp" />
+    <TextView
+        android:background="@color/purple_500"
+        android:fontFamily="@font/lato_black"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="Statistical Report"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        />
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="110dp"
+        android:gravity="left"
+        android:layout_marginTop="300dp"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:background="@color/white"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="No. of Classified zone"
+            android:textColor="#457588"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:id="@+id/geofences"
+            android:background="#457588"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="#"
+
+            android:textColor="#FFFFFF"
+            android:textSize="50dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="110dp"
+        android:gravity="left"
+        android:layout_marginTop="410dp"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:background="@color/white"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="high risk disease"
+            android:textColor="#457588"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/risk"
+            android:background="#457588"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="#"
+
+            android:textColor="#FFFFFF"
+            android:textSize="50dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:gravity="center"
+
+
+            android:orientation="horizontal"
+
+            >
+
+
+            <TextView
+
+                android:layout_width="10dp"
+                android:layout_height="329dp"
+                android:background="#FFFFFF"
+                android:clickable="true"
+                android:fontFamily="@font/lato_black"
+
+                android:gravity="center"
+                android:text="#"
+
+                android:textColor="#FFFFFF"
+                android:textSize="28dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="110dp"
+        android:gravity="left"
+        android:layout_marginTop="520dp"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:background="@color/white"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="Total classified area"
+            android:textColor="#457588"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:id="@+id/total_area"
+            android:background="#457588"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="#"
+
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="110dp"
+        android:gravity="right"
+        android:layout_marginTop="300dp"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:background="@color/white"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="Break In"
+            android:textColor="#457588"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/violations"
+            android:background="#457588"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="#"
+
+            android:textColor="#FFFFFF"
+            android:textSize="50dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="110dp"
+        android:gravity="right"
+        android:layout_marginTop="410dp"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:background="@color/white"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="No. of classified Purok"
+            android:textColor="#457588"
+            android:textSize="17dp"
+            />
+
+        <TextView
+            android:id="@+id/purok"
+            android:background="#457588"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="#"
+
+            android:textColor="#FFFFFF"
+            android:textSize="50dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="110dp"
+        android:gravity="right"
+        android:layout_marginTop="520dp"
+        android:layout_alignParentStart = "true"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentEnd = "true"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:background="@color/white"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="Total Area Of Casisang"
+            android:textColor="#457588"
+            android:textSize="17dp"
+            />
+
+        <TextView
+            android:id="@+id/area_casisang"
+            android:background="#457588"
+            android:fontFamily="@font/lato_black"
+            android:layout_width="205dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+
+            android:clickable="true"
+            android:text="32.84 Km sq"
+
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="0dp"
+        android:elevation="2dp"
+        app:menu="@menu/activity_fire"
+        android:textColor="#E1B1B1"
+        android:background="#457588"
+        app:itemRippleColor="#FFFFFF"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="#FFFFFF"
+
+        android:id="@+id/bottom_navigation"/>
+
+
+</RelativeLayout>

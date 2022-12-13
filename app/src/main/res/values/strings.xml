@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AlertUp</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_view">Map</string>
+    <string name="title_activity_view_trigger">Map</string>
+    <string name="title_activity_report">Map</string>
+</resources>

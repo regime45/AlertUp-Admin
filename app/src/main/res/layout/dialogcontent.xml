@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Edit Content"
+        android:background="#457588"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#fff"/>
+
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="20dp"
+
+        android:text = "Radius" />
+
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="20dp"
+
+        android:text = "Name" />
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="20dp"
+
+        android:text = "Purok" />
+
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "208dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="19dp"
+        android:text = "Longitude" />
+
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "235dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="19dp"
+
+        android:text = "Latitude" />
+
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "275dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="17dp"
+
+            android:text = "Description" />
+
+    <TextView
+
+        android:layout_marginLeft  = "10dp"
+        android:layout_marginTop = "360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0C0C0C"
+        android:textSize="13dp"
+
+        android:text = "Alert Message" />
+
+
+
+    <EditText
+
+        android:hint="Geofence Name"
+        android:id="@+id/uimgurl"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
+        android:layout_marginLeft  = "100dp"
+
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/fireround"
+
+
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/uname"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/fireround"
+        android:gravity="center"
+        android:hint="Radius"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/Purok"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="160dp"
+
+        android:background="@drawable/fireround"
+        android:focusable="true"
+
+        android:gravity="center"
+        android:hint="Purok"
+
+        android:textSize="20sp" />
+
+    <EditText
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_marginLeft  = "100dp"
+        android:layout_marginTop="210dp"
+
+        android:layout_height="25dp"
+        android:hint="Longitude"
+        android:focusable="false"
+        android:alpha="0.5"
+
+        android:id="@+id/uemail"
+        android:background="@drawable/fireround"
+
+        android:textSize="15sp"/>
+
+    <EditText
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_marginLeft  = "100dp"
+        android:layout_marginTop="240dp"
+
+        android:layout_height="25dp"
+        android:hint="Latitude"
+        android:focusable="false"
+        android:alpha="0.5"
+
+
+        android:id="@+id/ucourse"
+        android:background="@drawable/fireround"
+
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+
+        android:layout_marginTop="270dp"
+        android:background="@drawable/fireround"
+        android:focusable="true"
+        android:gravity="center"
+        android:hint="Description"
+
+        android:textSize="20sp" />
+
+    <EditText
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="280dp"
+        android:layout_marginLeft  = "100dp"
+        android:layout_marginTop="355dp"
+
+        android:layout_height="80dp"
+        android:hint="Description"
+        android:focusable="true"
+        android:id="@+id/alerto_message"
+        android:background="@drawable/fireround"
+
+        android:textSize="20sp"/>
+
+
+    <Button
+        android:id="@+id/usubmit"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="210dp"
+
+        android:background="@drawable/transport_ing_background"
+        android:text="Update"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+
+
+
+</RelativeLayout>

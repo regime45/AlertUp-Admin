@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".select_disease">
+
+
+    <EditText
+        android:id="@+id/disease_name"
+        android:layout_width="320dp"
+        android:layout_marginBottom = "600dp"
+        android:background="@drawable/fireround"
+        android:textColor="#0C0C0C"
+        android:gravity="center"
+        android:hint="Add Disease Name"
+
+        android:textSize="20dp"
+        android:layout_height="100dp"
+        />
+    <EditText
+        android:id="@+id/discreption"
+        android:layout_width="320dp"
+        android:layout_marginTop = "120dp"
+        android:background="@drawable/fireround"
+        android:textColor="#0C0C0C"
+        android:gravity="center"
+        android:hint="Add Description"
+
+        android:textSize="20dp"
+        android:layout_height="130dp"
+        />
+
+    <EditText
+        android:id="@+id/safety"
+        android:layout_width="320dp"
+        android:layout_marginTop = "270dp"
+
+        android:background="@drawable/fireround"
+        android:textColor="#0C0C0C"
+        android:gravity="center"
+        android:hint="Add Safety Alert Message. Ex. Wear Mask, keep distance etc."
+        android:textSize="20dp"
+        android:layout_height="100dp"
+        />
+    <Button
+        android:id="@+id/select_nav"
+        android:layout_width="50dp"
+        android:gravity="center"
+        android:layout_marginTop = "400dp"
+        android:background="@drawable/ic_baseline_navigate_next_24"
+        android:textColor="#0C0C0C"
+        android:textSize="5dp"
+        android:layout_height="50dp"
+        />
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:gravity="center"
+        android:layout_marginTop = "0dp"
+        android:layout_marginLeft="250dp"
+        android:textColor="#0C0C0C"
+         android:layout_height="50dp">
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

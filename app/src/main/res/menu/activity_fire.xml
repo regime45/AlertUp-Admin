@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item android:id="@+id/view"
+        android:title="View"
+        android:icon="@drawable/ic_baseline_location_on_24"
+
+        />
+
+    <item android:id="@+id/edits"
+        android:title="Edit"
+        android:icon="@drawable/ic_baseline_edit_24"
+
+        />
+
+    <item android:id="@+id/homes"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"
+
+
+        />
+
+    <item android:id="@+id/creates"
+        android:title="Add"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+
+
+        />
+
+    <item android:id="@+id/info"
+        android:title="Reports"
+        android:icon="@drawable/ic_baseline_info_24"
+
+        />
+
+</menu>
