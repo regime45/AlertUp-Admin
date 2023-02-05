@@ -104,130 +104,125 @@ public class geo_adapter extends FirebaseRecyclerAdapter<geo_model, geo_adapter.
 /*
         // new date format
         SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyyMMdd");
-
         //expiration date
         long cutoff = new Date().getTime()+ TimeUnit.MILLISECONDS.convert(14, TimeUnit.DAYS);
         String limit_date = dateFormatGmt.format(new Date(cutoff));
         Long expire = Long.parseLong( limit_date);
-
         // Current date
        // SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String currentDate = dateFormatGmt.format(new Date());
         Long current = Long.parseLong(currentDate);
-
         if (current>expire){
             FirebaseDatabase.getInstance().getReference("covid_tool").child("covid_zone")
                     .child(getRef(position).getKey()).removeValue();
         }
-
         Toast.makeText(context,limit_date, Toast.LENGTH_LONG).show();
-
  */
 //Glide.with(holder.img.getContext()).load(model.getimageURL()).into(holder.img);
 
-                   holder.edit.setOnClickListener(new View.OnClickListener() {
+        holder.edit.setOnClickListener(new View.OnClickListener() {
 
 
-                       @Override
-                        public void onClick(View view) {
-                            final DialogPlus dialogPlus=DialogPlus.newDialog(holder.edit.getContext())
-                                    .setContentHolder(new ViewHolder(R.layout.dialogcontent))
-                                    .setExpanded(false,1800)
-                                    .create();
+            @Override
+            public void onClick(View view) {
+                final DialogPlus dialogPlus=DialogPlus.newDialog(holder.edit.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.dialogcontent))
+                        .setExpanded(false,1800)
+                        .create();
 
-                            View myview=dialogPlus.getHolderView();
-                            final EditText purl=myview.findViewById(R.id.uimgurl);
-                            final EditText name=myview.findViewById(R.id.uname);
-                            final EditText course=myview.findViewById(R.id.ucourse);
-                            final EditText email=myview.findViewById(R.id.uemail);
-                            final EditText Purok=myview.findViewById(R.id.Purok);
-                           final  EditText alerto=myview.findViewById(R.id.alerto_message);
-                            final EditText Description=myview.findViewById(R.id.description);
+                View myview=dialogPlus.getHolderView();
+                final EditText purl=myview.findViewById(R.id.uimgurl);
+                final EditText name=myview.findViewById(R.id.uname);
+                final EditText course=myview.findViewById(R.id.ucourse);
+                final EditText email=myview.findViewById(R.id.uemail);
+                final EditText Purok=myview.findViewById(R.id.Purok);
+                final  EditText alerto=myview.findViewById(R.id.alerto_message);
+                final EditText Description=myview.findViewById(R.id.description);
 
-                            Button submit=myview.findViewById(R.id.usubmit);
+                Button submit=myview.findViewById(R.id.usubmit);
 
-                            purl.setText(model.getGeo_Name());
-                            name.setText(model.getRadius());
-                            course.setText(model.getlatitude());
-                            email.setText(model.getlongitude());
-                            Purok.setText(model.getPurok());
-                            alerto.setText(model.getalert_message());
-                            Description.setText(model.getDescription());
-                            dialogPlus.show();
+                purl.setText(model.getGeo_Name());
+                name.setText(model.getRadius());
+                course.setText(model.getlatitude());
+                email.setText(model.getlongitude());
+                Purok.setText(model.getPurok());
+                alerto.setText(model.getalert_message());
+                Description.setText(model.getDescription());
+                dialogPlus.show();
 
-                           submit.setOnClickListener(new View.OnClickListener() {
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String,Object> map=new HashMap<>();
+
+                        map.put("Geo_Name",purl.getText().toString());
+                        map.put("Radius",name.getText().toString());
+                        map.put("longitude",email.getText().toString());
+                        map.put("latitude",course.getText().toString());
+                        map.put("Purok",Purok.getText().toString());
+                        map.put("alert_message",alerto.getText().toString());
+                        map.put("Description",Description.getText().toString());
+
+                        FirebaseDatabase.getInstance().getReference("alerts_zone").child("classified_zone")
+                                .child(getRef(position).getKey()).updateChildren(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
-                                    public void onClick(View view) {
-                                        Map<String,Object> map=new HashMap<>();
+                                    public void onSuccess(Void aVoid) {
+                                        dialogPlus.dismiss();
 
-                                       map.put("Geo_Name",purl.getText().toString());
-                                        map.put("Radius",name.getText().toString());
-                                        map.put("longitude",email.getText().toString());
-                                        map.put("latitude",course.getText().toString());
-                                        map.put("Purok",Purok.getText().toString());
-                                        map.put("alert_message",alerto.getText().toString());
-                                         map.put("Description",Description.getText().toString());
-
-                                        FirebaseDatabase.getInstance().getReference("alerts_zone").child("classified_zone")
-                                                .child(getRef(position).getKey()).updateChildren(map)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        dialogPlus.dismiss();
-
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        dialogPlus.dismiss();
-                                                    }
-                                                });
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        dialogPlus.dismiss();
                                     }
                                 });
+                    }
+                });
 
 
 
 
-                        }
-                    });
+            }
+        });
 
 
-                    holder.delete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            AlertDialog.Builder builder=new AlertDialog.Builder(holder.img.getContext());
-                            builder.setTitle("Delete Panel");
-                            builder.setMessage("Delete...?");
-                           // Intent intent = new Intent(view.getContext(), Fire_Activity.class);
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(holder.img.getContext());
+                builder.setTitle("Delete Panel");
+                builder.setMessage("Delete...?");
+                // Intent intent = new Intent(view.getContext(), Fire_Activity.class);
 
 
-                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                  // String time    =  model.getlatitude();
-                                    //String  lastime = model.getlongitude();
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // String time    =  model.getlatitude();
+                        //String  lastime = model.getlongitude();
 
-                                   // Long times = Long.parseLong( time);
-                                   // Long lastimes = Long.parseLong( lastime);
+                        // Long times = Long.parseLong( time);
+                        // Long lastimes = Long.parseLong( lastime);
 
-                                    //if (times > lastimes){
-                                    FirebaseDatabase.getInstance().getReference("alerts_zone").child("classified_zone")
-                                           .child(getRef(position).getKey()).removeValue();
+                        //if (times > lastimes){
+                        FirebaseDatabase.getInstance().getReference("alerts_zone").child("classified_zone")
+                                .child(getRef(position).getKey()).removeValue();
 
-                                   // String ss = getRef(position).getKey();
-                                  //Toast.makeText(context, model.getlatitude()  , Toast.LENGTH_LONG).show();
-                                }//}
-                            });
+                        // String ss = getRef(position).getKey();
+                        //Toast.makeText(context, model.getlatitude()  , Toast.LENGTH_LONG).show();
+                    }//}
+                });
 
-                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                }
-                            });
-                            builder.show();
-                        }
-                    });
+                    }
+                });
+                builder.show();
+            }
+        });
     } // End of OnBindViewMethod
 }

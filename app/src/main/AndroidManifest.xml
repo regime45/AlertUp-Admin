@@ -14,7 +14,9 @@
     -->
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera" />
+
+
+
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -31,16 +33,22 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+
+
     <application
         android:allowBackup="true"
+        android:enabled="true"
         android:exported="true"
         android:icon="@drawable/alert_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Classified_zone">
-        <activity android:name=".list_of_disease"></activity>
-        <activity android:name=".select_disease" />
+        <activity android:name=".geotagging"></activity>
+        <activity android:name=".user_tracking" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,6 +62,22 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".geo_tag_loc_non_communicable"
+            android:label="@string/title_activity_point4" />
+        <activity
+            android:name=".non_communicable_tagging"
+            android:label="@string/title_activity_point3" />
+        <activity
+            android:name=".geotag_location"
+            android:label="@string/title_activity_point2" />
+        <activity
+            android:name=".point_1"
+            android:label="@string/title_activity_point1" />
+        <activity android:name=".fire_to_pdf" />
+        <activity android:name=".print_activity" />
+        <activity android:name=".list_of_disease" />
+        <activity android:name=".select_disease" />
+        <activity
             android:name=".Report_Activity"
             android:label="@string/title_activity_report" />
         <activity
@@ -64,8 +88,11 @@
             android:name=".GeofenceBroadcastReceiver"
             android:enabled="true"
             android:exported="true" />
+
+
+
         <service
-            android:name="ForegroundService"
+            android:name=".ForegroundService"
             android:enabled="true"
             android:exported="true" />
 
@@ -78,6 +105,19 @@
             android:label="@string/title_activity_view" />
         <activity android:name=".CreateActivity" />
         <activity android:name=".MainActivity" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="net.smallacademy.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+
         <activity
             android:name=".Login_Activity"
             android:exported="true">

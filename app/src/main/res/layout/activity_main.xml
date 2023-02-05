@@ -12,8 +12,8 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/alertas"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="156dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageView
         android:id="@+id/image"
@@ -44,6 +44,59 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/activity_fire"
         tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/user_tracking"
+        android:layout_width="128dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="96dp"
+        android:text="User Tracking"
+        app:layout_constraintBottom_toBottomOf="@+id/root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/scan2"
+        android:layout_width="128dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="96dp"
+        android:text="Geotag Location"
+        app:layout_constraintBottom_toBottomOf="@+id/root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/scan4"
+        android:layout_width="128dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="96dp"
+        android:text="Confidential Geotag"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toBottomOf="@+id/root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <Button
+        android:id="@+id/scan3"
+        android:layout_width="128dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="96dp"
+        android:text="Analytics"
+        app:layout_constraintBottom_toBottomOf="@+id/root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

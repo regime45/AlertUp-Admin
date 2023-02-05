@@ -217,6 +217,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             //We need background permission
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 //mMap.clear();
+
                 addMarker(latLng);
                 addCircle(latLng);
                 //addGeofence(latLng, GEOFENCE_RADIUS);

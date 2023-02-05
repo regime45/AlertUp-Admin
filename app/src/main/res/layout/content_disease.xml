@@ -39,6 +39,8 @@
         android:layout_marginLeft  = "100dp"
         android:digits="0,1,2,3,4,5,6,7,8,9"
         android:gravity="center"
+        android:focusable="false"
+        android:alpha="0.5"
         android:inputType="number"
         android:layout_height="40dp"
         android:layout_marginTop="120dp"
@@ -54,8 +56,10 @@
         android:layout_height="wrap_content"
         android:textColor="#0C0C0C"
         android:textSize="20dp"
+        android:focusable="false"
+        android:alpha="0.5"
 
-        android:text = "Radius" />
+        android:hint = "Radius" />
 
 
     <EditText
@@ -135,8 +139,6 @@
         android:textSize="20sp"/>
 
 
-
-
     <Button
         android:id="@+id/usubmit"
         android:layout_width="110dp"
@@ -150,10 +152,6 @@
         android:text="next"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
-
-
-
-
 
 
 </RelativeLayout>

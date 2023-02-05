@@ -4,4 +4,8 @@
     <string name="title_activity_view">Map</string>
     <string name="title_activity_view_trigger">Map</string>
     <string name="title_activity_report">Map</string>
+    <string name="title_activity_point1">Map</string>
+    <string name="title_activity_point2">Map</string>
+    <string name="title_activity_point3">Map</string>
+    <string name="title_activity_point4">Map</string>
 </resources>

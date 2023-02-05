@@ -20,6 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -128,7 +129,7 @@ public class list_of_disease_adapter extends FirebaseRecyclerAdapter<geo_model, 
                     @Override
                     public void onClick(View view) {
 
-                        Intent intent = new Intent(context, MapsActivity.class);
+                        Intent intent = new Intent(context, point_1.class);
                        // intent.putExtra("name_disease",model.getdisease_name());
 
                         String radi = rad.getText().toString();
@@ -140,6 +141,22 @@ public class list_of_disease_adapter extends FirebaseRecyclerAdapter<geo_model, 
                         intent.putExtra("description_disease",description_dis);
                         intent.putExtra("keyradius",radi );
                         intent.putExtra("keysafe",safe );
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference("alerts_zone").child("classified_zone");
+                        DatabaseReference newChildRef = myRef.push();
+                        String key = newChildRef.getKey();
+                        intent.putExtra("key",key );
+
+                        if (key!= null) {
+
+                            myRef.child(key).child("Geo_Name").setValue(disease_name);
+                            myRef.child(key).child("Description").setValue(description_dis);
+                            myRef.child(key).child("alert_message").setValue(safe);
+
+                            //  }
+                            //Toast.makeText(context, " save successfully...", Toast.LENGTH_SHORT).show();
+                        }
 
                          context.startActivity(intent);
 

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:gravity="center"
+    android:background="#f6f6fc"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="#457588"
+            android:gravity="center"
+            android:text="Registration"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="-8dp"
+
+            android:textStyle="italic"
+            android:text="* required"
+            android:textColor="#FF0000" />
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center|center_vertical"
+            android:background="@drawable/shapelogin"
+            android:gravity="center"
+            android:hint=""
+            android:textColor="#070707" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="Full Name"
+            android:textColor="#000000" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="-8dp"
+
+            android:textStyle="italic"
+            android:text="* required"
+            android:textColor="#FF0000" />
+
+        <EditText
+            android:id="@+id/number"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center|center_vertical"
+            android:background="@drawable/shapelogin"
+            android:digits="0,1,2,3,4,5,6,7,8,9"
+            android:gravity="center"
+            android:hint=""
+            android:inputType="number"
+            android:text=""
+            android:textColor="#070707" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="Contact number"
+            android:textColor="#000000" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="-8dp"
+
+            android:textStyle="italic"
+            android:text="* required"
+            android:textColor="#FF0000" />
+
+        <EditText
+            android:id="@+id/barangay"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center|center_vertical"
+            android:background="@drawable/shapelogin"
+            android:gravity="center"
+            android:hint=""
+            android:textColor="#070707" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="barangay"
+            android:textColor="#000000" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="-8dp"
+
+            android:textStyle="italic"
+            android:text="* required"
+            android:textColor="#FF0000" />
+
+        <EditText
+            android:id="@+id/purok"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center|center_vertical"
+            android:background="@drawable/shapelogin"
+            android:gravity="center"
+            android:hint=""
+            android:textColor="#070707" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="Purok"
+            android:textColor="#000000" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="-8dp"
+
+            android:textStyle="italic"
+            android:text="* required"
+            android:textColor="#FF0000" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="390dp">
+
+
+        <RadioGroup
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/shapelogin"
+            android:id="@+id/rgGender"
+            >
+            <RadioButton
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:id="@+id/rbMale"
+                android:text="Male"
+                />
+            <RadioButton
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbFemale"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:text="Female"
+                />
+        </RadioGroup>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-4dp"
+            android:gravity="center"
+            android:text="Gender"
+            android:textColor="#000000" />
+
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="455dp">
+        <Button
+            android:id="@+id/saveit"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+
+            android:background="@drawable/rdred"
+            android:text="Save"
+            android:layout_marginLeft="10dp"
+
+            />
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>

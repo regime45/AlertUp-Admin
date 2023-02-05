@@ -158,7 +158,9 @@ public class ForegroundService extends Service {
                     String key = newChildRef.getKey();
 
                     @SuppressLint("WrongConstant") SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_APPEND);
-                    String name = sharedPreferences.getString("name", "");
+                    String name = sharedPreferences.getString("id", "");
+
+                    //String namess = getIntent().getStringExtra("SCAN_RESULTS" );
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -166,12 +168,12 @@ public class ForegroundService extends Service {
                     editor.putString("last_longitude", String.valueOf(locationResult.getLastLocation().getLongitude()));
                     editor.commit();
 
-                    if (name != null) {
-                        myRef.child(name).child("name").setValue(name);
+                  //  if (name != null) {
+                  //      myRef.child(name).child("name").setValue(name);
                         // myRef.child(name).child("Radius").setValue(contact);
-                        myRef.child(name).child("last_latitude").setValue(locationResult.getLastLocation().getLatitude());
-                        myRef.child(name).child("last_longitude").setValue(locationResult.getLastLocation().getLongitude());
-                    }
+                  //      myRef.child(name).child("last_latitude").setValue(locationResult.getLastLocation().getLatitude());
+                    //    myRef.child(name).child("last_longitude").setValue(locationResult.getLastLocation().getLongitude());
+                   // }
                     //     Toast.makeText(context, " save successfully...", Toast.LENGTH_SHORT).show();
 
 

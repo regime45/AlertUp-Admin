@@ -29,7 +29,7 @@
 
                 android:layout_marginLeft="10dp"
                 android:text="Disease Name"
-                android:textColor="#000"
+                android:textColor="#FF457588"
                 android:textSize="15sp"
                 android:textStyle="italic" />
                 <TextView
@@ -50,7 +50,7 @@
 
                 android:layout_marginLeft="10dp"
                 android:text="Description"
-                android:textColor="#000"
+                android:textColor="#FF457588"
                 android:textSize="15sp"
                 android:textStyle="italic" />
 
