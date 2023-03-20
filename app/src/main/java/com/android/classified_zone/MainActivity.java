@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.homes:
-                        Intent amphibiansActivityIntentssss = new Intent(MainActivity.this, user_tracking.class);
+                        Intent amphibiansActivityIntentssss = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(amphibiansActivityIntentssss);
 
 

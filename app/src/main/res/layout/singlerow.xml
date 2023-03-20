@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Radius"
+                    android:text="Name of Disease"
                     android:textStyle="italic"
                     android:textColor="#FF457588"
                     android:textSize="18sp" />

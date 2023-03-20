@@ -61,6 +61,7 @@ public class point_1 extends AppCompatActivity implements OnMapReadyCallback, Go
     private GoogleMap mMap;
     private ActivityPoint1Binding binding;
     Button next;
+    Button save, refresh;
 
     Polygon polygon = null;
     private Marker mMarkerA;
@@ -96,8 +97,43 @@ public class point_1 extends AppCompatActivity implements OnMapReadyCallback, Go
         mapFragment.getMapAsync(this);
 
         area = findViewById(R.id.area);
+        save= findViewById(R.id.save);
+        refresh= findViewById(R.id.refresh);
 
+        refresh.setOnClickListener(new View.OnClickListener() {
 
+            public void onClick(View v) {
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                String names = getIntent().getStringExtra("key" );
+                DatabaseReference dbRef = database.getReference("poly").child("tline").child(names);
+                dbRef .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                        String lon4 = snapshot.child("plon4").getValue().toString();
+                        if (lon4  != null){
+                            reload(lon4);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent amphibiansActivityIntentsss = new Intent(point_1.this, list_of_disease.class);
+                startActivity(amphibiansActivityIntentsss);
+                Toast.makeText(point_1.this, "Succesfully save", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         navigationView = findViewById(R.id.bottom_navigation);
         mapview = findViewById(R.id.maps);
@@ -139,50 +175,28 @@ public class point_1 extends AppCompatActivity implements OnMapReadyCallback, Go
 
 
                     case R.id.view:
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        Intent amphibiansActivityIntentssss = new Intent(point_1.this, ViewActivity.class);
+                        startActivity(amphibiansActivityIntentssss);
 
-                        String names = getIntent().getStringExtra("key" );
-                        DatabaseReference dbRef = database.getReference("poly").child("tline").child(names);
-                        dbRef .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-
-                                String lon4 = snapshot.child("plon4").getValue().toString();
-                                if (lon4  != null){
-                                    reload(lon4);
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                            }
-                        });
 
                         return true;
                     case R.id.edits:
-                        //String name= getIntent().getStringExtra("key" );
-                        //mMap.clear();
-                        // FirebaseDatabase.getInstance().getReference("poly").child("tline")
-                        //      .child(name).removeValue();
-                        //String nams= getIntent().getStringExtra("key" );
-                        //  String poly_name= getIntent().getStringExtra("name_disease" );
-                        // Intent amphibiansActivityIntents = new Intent(point_1.this, point_1.class);
-                        //startActivity(amphibiansActivityIntents);
+
+                        Intent amphibiansActivityIntents = new Intent(point_1.this, editActivity.class);
+                        startActivity(amphibiansActivityIntents);
 
                         return true;
                     case R.id.homes:
-                        // Intent amphibiansActivityIntentssss = new Intent(editActivity.this, MainActivity.class);
-                        // startActivity(amphibiansActivityIntentssss);
+                         Intent amphibiansActivityIntentsssss = new Intent(point_1.this, MainActivity.class);
+                         startActivity(amphibiansActivityIntentsssss);
                         return true;
                     case R.id.info:
-                        // Intent amphibiansActivityIntents = new Intent(editActivity.this, Report_Activity.class);
-                        //  startActivity(amphibiansActivityIntents);
+                         Intent ints = new Intent(point_1.this, Report_Activity.class);
+                          startActivity(ints);
                         return true;
                     case R.id.creates:
-                        // Intent amphibiansActivityIntentsss = new Intent(editActivity.this, list_of_disease.class);
-                        //startActivity(amphibiansActivityIntentsss);
+                         Intent amphibiansActivityIntentsss = new Intent(point_1.this, list_of_disease.class);
+                        startActivity(amphibiansActivityIntentsss);
                         return true;
                 }
                 return true;

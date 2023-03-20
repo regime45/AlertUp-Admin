@@ -2,12 +2,15 @@ package com.android.classified_zone;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -63,6 +66,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -132,45 +136,43 @@ public class ViewActivity extends AppCompatActivity
 
                                 switch (item.getItemId()){
 
-                                        case R.id.view:
-                                               // Intent amphibiansActivityIntent = new Intent(editActivity.this, ViewActivity.class);
-                                                //startActivity(amphibiansActivityIntent);
-                                                if (polygon != null) polygon.remove();
+                                        case R.id.view: Intent amphibiansActivityIntent = new Intent(ViewActivity.this, ViewActivity.class);
+                                                startActivity(amphibiansActivityIntent);
+                                             /*   if (polygon != null) polygon.remove();
                                                 PolygonOptions polygonOptions = new PolygonOptions().addAll(latLngList)
                                                         .clickable(true);
                                                 polygon = mMap.addPolygon(polygonOptions);
                                                 int color = polygon.getStrokeColor() ^ 0x33FF0000;
                                                 polygon.setFillColor(Color.TRANSPARENT);
 
+                                              */
+
                                                 break;
                                         case R.id.edits:
-                                                //Intent amphibiansActivityIntentss = new Intent(editActivity.this,editActivity.class);
-                                              //  startActivity(amphibiansActivityIntentss);
+                                                        Intent amphibiansActivityIntentss = new Intent(ViewActivity.this,editActivity.class);
+                                               startActivity(amphibiansActivityIntentss);
 
 
                                                 break;
                                         case R.id.homes:
-                                               // Intent amphibiansActivityIntentssss = new Intent(editActivity.this, MainActivity.class);
-                                               // startActivity(amphibiansActivityIntentssss);
+                                                Intent amphibiansActivityIntentssss = new Intent(ViewActivity.this, MainActivity.class);
+                                                startActivity(amphibiansActivityIntentssss);
 
                                                 break;
 
                                         case R.id.info:
-                                               // Intent amphibiansActivityIntents = new Intent(editActivity.this, Report_Activity.class);
-                                              //  startActivity(amphibiansActivityIntents);
+                                               Intent amphibiansActivityIntents = new Intent(ViewActivity.this, Report_Activity.class);
+                                              startActivity(amphibiansActivityIntents);
 
 
                                                 break;
 
                                         case R.id.creates:
-                                               // Intent amphibiansActivityIntentsss = new Intent(editActivity.this, list_of_disease.class);
-                                                //startActivity(amphibiansActivityIntentsss);
+                                                Intent amphibiansActivityIntentsss = new Intent(ViewActivity.this, list_of_disease.class);
+                                                startActivity(amphibiansActivityIntentsss);
 
 
                                                 break;
-
-
-
 
 
                                 }
@@ -179,11 +181,35 @@ public class ViewActivity extends AppCompatActivity
                         }
                 });
 
+                if (Build.VERSION.SDK_INT >= 30){
+                        if (!Environment.isExternalStorageManager()){
+                                Intent getpermission = new Intent();
+                                getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                                startActivity(getpermission);
+                        }
+                }
+                /*
 
+                String path = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+"a.json");
 
+                JSONObject json = new JSONObject();
+                try {
+                        json.put("name", "Google");
+                        json.put("employees", 140000);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                json.put("offices", List.of("Mountain View", "Los Angeles", "New York"));
+                        }
+                } catch (JSONException e) {
+                        e.printStackTrace();
+                }
 
+                try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+                        out.write(json.toString());
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
 
-
+                 */
 
 
 
@@ -290,6 +316,10 @@ public class ViewActivity extends AppCompatActivity
                                 for (DataSnapshot childSnapshot: snapshot.getChildren()) {
                                         geo_model dsds = childSnapshot.getValue(geo_model.class);
 
+                                        //String key = childSnapshot.getKey();
+
+                                       // heatmaps(key);
+
                                         String name = String.valueOf(dsds.getname());
                                         String radius =childSnapshot.child("radius").getValue().toString();
                                         String lat1 = childSnapshot.child("plat1").getValue().toString();
@@ -301,18 +331,42 @@ public class ViewActivity extends AppCompatActivity
                                         String lat4 = childSnapshot.child("plat4").getValue().toString();
                                         String lon4 = childSnapshot.child("plon4").getValue().toString();
 
+                                      //  int size = (int) childSnapshot.getChildrenCount();\
+                                        lati1 = Double.valueOf(lat1);
+                                        longi1 = Double.valueOf(lon1);
+                                        lati2 = Double.valueOf(lat2);
+                                        longi2 = Double.valueOf(lon2);
+                                        lati3 = Double.valueOf(lat3);
+                                        longi3 = Double.valueOf(lon3);
+                                        lati4 = Double.valueOf(lat4);
+                                        longi4 = Double.valueOf(lon4);
 
-                                         double calrad = Double.parseDouble(radius);
+
+
+                                        String path = String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+"c.json");
+                                        JSONObject json = new JSONObject();
+                                        try {
+
+                                                        json.put("lat", lati1);
+                                                        json.put("lon",longi1);
+                                                        //locations.add(new LatLng(lati1, longi1));
+
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                                        //    json.put("offices", List.of("Mountain View", "Los Angeles", "New York"));
+                                                }
+                                        } catch (JSONException e) {
+                                                e.printStackTrace();
+                                        }
+
+                                        try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+                                                out.write(json.toString());
+                                        } catch (Exception e) {
+                                                e.printStackTrace();
+                                        }
+                                        double calrad = Double.parseDouble(radius);
                                          double calrads = calrad /3;
                                               // float rad = Float.valueOf(radius);
-                                                 lati1 = Double.valueOf(lat1);
-                                                 longi1 = Double.valueOf(lon1);
-                                                lati2 = Double.valueOf(lat2);
-                                                 longi2 = Double.valueOf(lon2);
-                                                 lati3 = Double.valueOf(lat3);
-                                                 longi3 = Double.valueOf(lon3);
-                                                lati4 = Double.valueOf(lat4);
-                                                longi4 = Double.valueOf(lon4);
+
 
                                                 LatLng poly1 = new LatLng(lati1, longi1);
                                                 LatLng poly2 = new LatLng(lati2, longi2);
@@ -327,16 +381,57 @@ public class ViewActivity extends AppCompatActivity
                                         double CenterLon = (longi1 + longi2 + longi3 + longi4 ) / 4;
                                         LatLng Center = new LatLng(CenterLat, CenterLon);
                                         mMap.addMarker(new MarkerOptions().position(Center).title(name));
-                                        List<LatLng> result = new ArrayList<>();
 
-                                        List<LatLng> latLngs = new ArrayList<>();
+                                        ArrayList<LatLng> result = new ArrayList<>();
+
+                                        ArrayList<LatLng> latLngs = new ArrayList<>();
                                         latLngs.add(new LatLng(lati1, longi1));
                                         latLngs.add(new LatLng(lati2, longi2));
                                         latLngs.add(new LatLng(lati3, longi3));
                                         latLngs.add(new LatLng(lati4, longi4));
                                         Log.i("TAG", "computeArea " + SphericalUtil.computeArea(latLngs));
 
-                                       // Toast.makeText(ViewActivity.this, ""+name+ ": "+ SphericalUtil.computeArea(latLngs), Toast.LENGTH_LONG).show();
+                                        int[] colors = {
+                                                Color.GREEN,    // green
+                                                Color.YELLOW,    // yellow
+                                                Color.rgb(255,165,0), //Orange
+                                                Color.RED,              //red
+                                                Color.rgb(153,50,204), //dark orchid
+                                                Color.rgb(165,42,42) //brown
+                                        };
+
+                                        float[] startpoints = {
+                                                0.05f,    //0-50
+                                                0.1f,   //51-100
+                                                0.2f,   //101-150
+                                                0.3f,   //151-200
+                                                0.4f,    //201-300
+                                                0.6f      //301-500
+                                        };
+                                        /*
+                                        result.add(new LatLng(lati1, longi1));
+                                        for(LatLng results : result){
+
+
+
+
+
+
+                                        Gradient gradient = new Gradient(colors,startpoints);
+                                        HeatmapTileProvider heatmapTileProvider;
+                                        heatmapTileProvider = new HeatmapTileProvider.Builder()
+                                                .data(Collections.singleton(results))
+                                                .radius(50)
+                                                .gradient(gradient)
+                                                .build();
+                                        TileOverlayOptions tileoverlayoptions = new TileOverlayOptions().tileProvider(heatmapTileProvider);
+                                        mMap.addTileOverlay(tileoverlayoptions);
+
+                                        }
+
+                                         */
+
+                                        //Toast.makeText(ViewActivity.this, ""+name+ ": "+ SphericalUtil.computeArea(latLngs), Toast.LENGTH_LONG).show();
                                         /*
                                         CircleOptions circleOptions = new CircleOptions();
                                         circleOptions.center(Center);
@@ -356,7 +451,7 @@ public class ViewActivity extends AppCompatActivity
                                               //  mMap.addMarker(new MarkerOptions().position(poly1).title(name));
                                           // addheatmap();
                                           //  buildheatmap(result);
-                                         addHeatMap();
+                                         ///addHeatMap();
 
                                         // mMap.addMarker(new MarkerOptions().position(poly2).title(name));
                                                // mMap.addMarker(new MarkerOptions().position(poly3).title(name));
@@ -385,6 +480,151 @@ public class ViewActivity extends AppCompatActivity
                 user_location();
 
                           }
+
+        private void heatmaps(String key) {
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference dbRef = database.getReference("poly").child("tline");
+                dbRef .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                for (DataSnapshot childSnapshot: snapshot.getChildren()) {
+                                        geo_model dsds = childSnapshot.getValue(geo_model.class);
+
+                                        String key = childSnapshot.getKey();
+
+                                        heatmaps(key);
+
+                                        String name = String.valueOf(dsds.getname());
+                                        String radius =childSnapshot.child("radius").getValue().toString();
+                                        String lat1 = childSnapshot.child("plat1").getValue().toString();
+                                        String lon1 = childSnapshot.child("plon1").getValue().toString();
+                                        String lat2 = childSnapshot.child("plat2").getValue().toString();
+                                        String lon2 = childSnapshot.child("plon2").getValue().toString();
+                                        String lat3 = childSnapshot.child("plat3").getValue().toString();
+                                        String lon3 = childSnapshot.child("plon3").getValue().toString();
+                                        String lat4 = childSnapshot.child("plat4").getValue().toString();
+                                        String lon4 = childSnapshot.child("plon4").getValue().toString();
+
+
+                                        double calrad = Double.parseDouble(radius);
+                                        double calrads = calrad /3;
+                                        // float rad = Float.valueOf(radius);
+                                        lati1 = Double.valueOf(lat1);
+                                        longi1 = Double.valueOf(lon1);
+                                        lati2 = Double.valueOf(lat2);
+                                        longi2 = Double.valueOf(lon2);
+                                        lati3 = Double.valueOf(lat3);
+                                        longi3 = Double.valueOf(lon3);
+                                        lati4 = Double.valueOf(lat4);
+                                        longi4 = Double.valueOf(lon4);
+
+                                        LatLng poly1 = new LatLng(lati1, longi1);
+                                        LatLng poly2 = new LatLng(lati2, longi2);
+                                        LatLng poly3 = new LatLng(lati3, longi3);
+                                        LatLng poly4 = new LatLng(lati4, longi4);
+                                        Gson gson = new Gson();
+
+                                        String jsonString = gson.toJson(childSnapshot.child("plat1").getValue().toString());
+                                        // Toast.makeText(ViewActivity.this, ""+jsonString, Toast.LENGTH_LONG).show();
+
+                                        double CenterLat = (lati1 + lati2 + lati3 + lati4 ) / 4;
+                                        double CenterLon = (longi1 + longi2 + longi3 + longi4 ) / 4;
+                                        LatLng Center = new LatLng(CenterLat, CenterLon);
+                                       // mMap.addMarker(new MarkerOptions().position(Center).title(name));
+
+                                        ArrayList<LatLng> result = new ArrayList<>();
+
+                                        ArrayList<LatLng> latLngs = new ArrayList<>();
+                                        latLngs.add(new LatLng(lati1, longi1));
+                                        latLngs.add(new LatLng(lati2, longi2));
+                                        latLngs.add(new LatLng(lati3, longi3));
+                                        latLngs.add(new LatLng(lati4, longi4));
+                                        Log.i("TAG", "computeArea " + SphericalUtil.computeArea(latLngs));
+
+                                        int[] colors = {
+                                                Color.GREEN,    // green
+                                                Color.YELLOW,    // yellow
+                                                Color.rgb(255,165,0), //Orange
+                                                Color.RED,              //red
+                                                Color.rgb(153,50,204), //dark orchid
+                                                Color.rgb(165,42,42) //brown
+                                        };
+
+                                        float[] startpoints = {
+                                                0.05f,    //0-50
+                                                0.1f,   //51-100
+                                                0.2f,   //101-150
+                                                0.3f,   //151-200
+                                                0.4f,    //201-300
+                                                0.6f      //301-500
+                                        };
+                                        result.add(new LatLng(lati1, longi1));
+                                        /*
+                                        for(LatLng results : result){
+
+                                                Gradient gradient = new Gradient(colors,startpoints);
+                                                HeatmapTileProvider heatmapTileProvider;
+                                                heatmapTileProvider = new HeatmapTileProvider.Builder()
+                                                        .data(Collections.singleton(results))
+                                                        .radius(50)
+                                                        .gradient(gradient)
+                                                        .build();
+                                                TileOverlayOptions tileoverlayoptions = new TileOverlayOptions().tileProvider(heatmapTileProvider);
+                                                mMap.addTileOverlay(tileoverlayoptions);
+
+                                        }
+
+                                         */
+
+                                        //Toast.makeText(ViewActivity.this, ""+name+ ": "+ SphericalUtil.computeArea(latLngs), Toast.LENGTH_LONG).show();
+                                        /*
+                                        CircleOptions circleOptions = new CircleOptions();
+                                        circleOptions.center(Center);
+                                        circleOptions.radius(calrads);
+                                        circleOptions.strokeColor(Color.argb(255, 255, 0,0));
+                                        circleOptions.fillColor(Color.argb(64, 255, 0,0));
+                                        circleOptions.strokeWidth(4);
+                                        mMap.addCircle(circleOptions);
+
+                                         */
+                                        //List<LatLng> result = new ArrayList<>();
+                                        //result.add(poly1);
+                                        //result.add(poly2);
+                                        // result.add(poly3);
+                                        //result.add(poly4);
+                                        // computeCentroid(result);
+                                        //  mMap.addMarker(new MarkerOptions().position(poly1).title(name));
+                                        // addheatmap();
+                                        //  buildheatmap(result);
+                                        ///addHeatMap();
+
+                                        // mMap.addMarker(new MarkerOptions().position(poly2).title(name));
+                                        // mMap.addMarker(new MarkerOptions().position(poly3).title(name));
+                                        //mMap.addMarker(new MarkerOptions().position(poly4).title(name));
+
+                                        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(poly1, 10));
+
+                                      //  Polygon polygon1 = mMap.addPolygon(new PolygonOptions()
+                                       //         .clickable(true)
+                                        //        .add(poly1, poly2, poly3, poly4, poly1));
+                                        // Store a data object with the polygon, used here to indicate an arbitrary type.
+                                       // polygon1.setTag("beta");
+                                        // [END maps_poly_activity_add_polygon]
+                                        // Style the polygon.
+                                      //  stylePolygon(polygon1);
+
+                                }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                        }
+                });
+        }
+
         private String formatNumber(double distance) {
                 String unit = "";
                 if (distance < 1) {
@@ -692,6 +932,7 @@ public class ViewActivity extends AppCompatActivity
                 // Get the data: latitude/longitude positions of police stations.
                 try {
                         latLngs = readItems(R.raw.k);
+                        
                 } catch (JSONException e) {
                         Toast.makeText(this, "Problem reading list of locations.", Toast.LENGTH_LONG).show();
                 }

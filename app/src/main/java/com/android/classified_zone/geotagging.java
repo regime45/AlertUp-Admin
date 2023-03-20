@@ -11,7 +11,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +25,6 @@ import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,13 +45,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 
-import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -62,6 +54,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -369,11 +363,12 @@ public class geotagging extends AppCompatActivity {
                 // initialize byte stream
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
                 // Initialize byte array
                 byte[] bytes = stream.toByteArray();
                 // get base64 encoded string
                 sImage = Base64.encodeToString(bytes, Base64.DEFAULT);
+                mImageView.setImageBitmap(bitmap);
                 // set encoded text on textview
                 //textView.setText(sImage);
 
@@ -385,7 +380,7 @@ public class geotagging extends AppCompatActivity {
             // Initialize bitmap
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             // set bitmap on imageView
-            mImageView.setImageBitmap(bitmap);
+
             // Toast.makeText(getApplicationContext(),  sImage,Toast.LENGTH_SHORT).show();
             String ss = sImage;
             //savesdata(ss);
@@ -399,9 +394,11 @@ public class geotagging extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 File f = new File(currentPhotoPath);
 
+                String filePath = String.valueOf(f);
+                Bitmap fullsize = BitmapFactory.decodeFile(filePath);
+                ImageResizer.reduceBitmapSize(fullsize, 240000);
 
-
-
+               File reduce = getBitmap(fullsize);
 
 
 
@@ -410,7 +407,7 @@ public class geotagging extends AppCompatActivity {
                 Log.d("tag", "ABsolute Url of Image is " + Uri.fromFile(f));
 
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                Uri contentUri = Uri.fromFile(f);
+                Uri contentUri = Uri.fromFile(reduce);
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
                 String uriss = String.valueOf(f.getName());
@@ -424,7 +421,7 @@ public class geotagging extends AppCompatActivity {
                     // initialize byte stream
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     // compress Bitmap
-                    bitmaps.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    bitmaps.compress(Bitmap.CompressFormat.JPEG, 25, stream);
                     // Initialize byte array
                     byte[] bytes = stream.toByteArray();
                     // get base64 encoded string
@@ -449,6 +446,32 @@ public class geotagging extends AppCompatActivity {
         }
 
     }
+
+    private File getBitmap(Bitmap fullsize) {
+
+        File file = new File(currentPhotoPath);
+
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        fullsize.compress(Bitmap.CompressFormat.JPEG, 30,bos);
+        byte[] bitmapdata = bos.toByteArray();
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(bitmapdata);
+            fos.flush();
+            fos.close();
+            return file;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
 
     // camera
     private void uploadImageToFirebase(String name, Uri contentUri) {

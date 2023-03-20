@@ -62,6 +62,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -407,12 +409,17 @@ public class non_communicable_tagging extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 File f = new File(currentPhotoPath);
-                // set imgae
-                //mImageView.setImageURI(Uri.fromFile(f));
+
+                String filePath = String.valueOf(f);
+                Bitmap fullsize = BitmapFactory.decodeFile(filePath);
+                ImageResizer.reduceBitmapSize(fullsize, 240000);
+                // resize image from original size
+                File reduce = getBitmap(fullsize);
+
                 Log.d("tag", "ABsolute Url of Image is " + Uri.fromFile(f));
 
                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                Uri contentUri = Uri.fromFile(f);
+                Uri contentUri = Uri.fromFile(reduce);
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
                 String uriss = String.valueOf(f.getName());
@@ -451,6 +458,32 @@ public class non_communicable_tagging extends AppCompatActivity {
         }
 
     }
+
+    private File getBitmap(Bitmap fullsize) {
+
+        File file = new File(currentPhotoPath);
+
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        fullsize.compress(Bitmap.CompressFormat.JPEG, 30,bos);
+        byte[] bitmapdata = bos.toByteArray();
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(bitmapdata);
+            fos.flush();
+            fos.close();
+            return file;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
 
     // camera
     private void uploadImageToFirebase(String name, Uri contentUri) {

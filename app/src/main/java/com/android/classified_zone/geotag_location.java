@@ -27,8 +27,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.classified_zone.databinding.ActivityPoint1Binding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,7 +39,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.android.classified_zone.databinding.ActivityPoint1Binding;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,6 +60,7 @@ public class geotag_location extends AppCompatActivity implements OnMapReadyCall
     private ActivityPoint1Binding binding;
    Button next,refresh;
    Marker aMarker;
+   TextView nae, snipss;
    ImageView tag_photo;
    BottomNavigationView navigationView, mapview;
    Button new_geo;
@@ -221,6 +224,9 @@ public class geotag_location extends AppCompatActivity implements OnMapReadyCall
                     try {
                         Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                         LatLng center = new LatLng(lati1, longi1);
+
+
+
                         Bitmap aMarker = Bitmap.createScaledBitmap(bmp, 200, 260, false);
 
                         // set image to circle
@@ -360,6 +366,10 @@ public class geotag_location extends AppCompatActivity implements OnMapReadyCall
 //        Integer clickCount = (Integer) marker.getTag();
 
         String ss = marker.getId();
+        String title= String.valueOf(marker.getTitle());
+        String snips= String.valueOf(marker.getSnippet());
+        String lats = String.valueOf(marker.getPosition().latitude);
+        String lons= String.valueOf(marker.getPosition().longitude);
         String dd = String.valueOf(marker.getTag());
       //  Toast.makeText(this,dd ,Toast.LENGTH_LONG).show();
 
@@ -368,6 +378,8 @@ public class geotag_location extends AppCompatActivity implements OnMapReadyCall
         dialog.setCanceledOnTouchOutside(false);
 
         tag_photo= dialog.findViewById(R.id.imageView2);
+       // nae= dialog.findViewById(R.id.name);
+     //   snipss= dialog.findViewById(R.id.snippet);
         FrameLayout bottomSheet = (FrameLayout) dialog.findViewById(R.id.design_bottom_sheet);
 
 
@@ -377,6 +389,8 @@ public class geotag_location extends AppCompatActivity implements OnMapReadyCall
         dialog.show();
 
         Glide.with(geotag_location.this).load(dd).into(tag_photo);
+        //nae.setText(dd);
+      //  snipss.setText(snips);
 
 
         return false;
